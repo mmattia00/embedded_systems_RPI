@@ -3,6 +3,9 @@
         "string.h": "c",
         "stdlib.h": "c",
         "ioctl.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "compare": "c",
+        "errno.h": "c",
+        "stdint.h": "c"
     }
 }
