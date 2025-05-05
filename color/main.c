@@ -58,6 +58,14 @@ uint16_t i2c_read_word(int file, uint8_t reg) {
     return buffer[0] | (buffer[1] << 8); // Little-endian
 }
 
+// Function to normalize color values to return a number from 0 to 255
+uint8_t normalize_color(uint16_t color, uint16_t clear) {
+    if (clear == 0) return 0;
+    uint32_t scaled = ((uint32_t)color * 255) / clear;
+    return (scaled > 255) ? 255 : scaled;
+}
+
+
 int main() {
     int file = init_i2c(I2C_DEV, TCS34725_ADDR);
 
@@ -74,12 +82,20 @@ int main() {
 
     while (1) {
         usleep(100000); // Wait 100ms between reads
+
+        // Read raw data
         uint16_t clear = i2c_read_word(file, CDATA_REG);
         uint16_t red = i2c_read_word(file, RDATA_REG);
         uint16_t green = i2c_read_word(file, GDATA_REG);
         uint16_t blue = i2c_read_word(file, BDATA_REG);
 
-        printf("R: %u, G: %u, B: %u, C: %u\n", red, green, blue, clear);
+        // Normalize in range 0–255
+        uint8_t r_norm = normalize_color(red, clear);
+        uint8_t g_norm = normalize_color(green, clear);
+        uint8_t b_norm = normalize_color(blue, clear);
+
+        //printf("R: %u, G: %u, B: %u, C: %u\n", red, green, blue, clear);
+        printf("RGB  -> R: %u, G: %u, B: %u\n", r_norm, g_norm, b_norm);
     }
 
     close(file);
