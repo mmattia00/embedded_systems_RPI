@@ -1,4 +1,4 @@
-# embedded_systems_RPI
+# Embedded System Design with Raspberry PI
 repo containing the projects for the course of Embedded Systems with Raspberry PI followed at Universidad Politecnica de Madrid on 2025
 
 ## Project 1: Local I²C Applications  
@@ -13,4 +13,8 @@ This final project integrates all previous work into a complete IoT system. A Ra
 We enabled I²C manually in the Buildroot system and handled SSH access configuration to control the Pi remotely. Data is visualized live via a dashboard in ThingsBoard. The client-server architecture was tested incrementally, starting from simple UDP "hello" messages, and evolved into the final multi-sensor communication system.
 
 This project highlights the complete pipeline: embedded OS customization, sensor integration, network communication, and IoT data visualization.
+
+Here a video where is possible to see the whole system working.
+
+https://github.com/user-attachments/assets/6b89a6d1-0080-4187-8ab7-4899f71be90c
 
